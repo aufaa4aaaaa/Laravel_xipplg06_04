@@ -29,7 +29,7 @@ class StudentController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
+    {
     $request->validate([
         'nis' => 'required|unique:students',
         'nama_lengkap' => 'required',
@@ -39,15 +39,16 @@ class StudentController extends Controller
 
     Student::create($request->all());
     return redirect()->route('admin.students.index')->with('success', 'Data berhasil disimpan!');
-}
+    }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Student $student)
     {
-        //
+    return view('admin.student.show', compact('student'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
